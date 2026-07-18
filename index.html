@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nanded Survey Number Georeferencing</title>
 
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-measure/dist/leaflet-measure.css"/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Mobile Sidebar Toggle -->
+    <button id="sidebarToggle" aria-label="Toggle Sidebar">☰</button>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay">
+        <div class="spinner"></div>
+        <div>Processing GIS Data...</div>
+    </div>
+
+    <!-- Login Overlay -->
+    <div id="loginOverlay">
+        <div class="loginCard">
+            <h2>Nanded Survey Map</h2>
+            <input type="text" id="username" placeholder="Username" aria-label="Username">
+            <input type="password" id="password" placeholder="Password" aria-label="Password">
+            <button id="loginBtn">Login</button>
+            <div id="loginError"></div>
+        </div>
+    </div>
+
+    <!-- Sidebar Controls -->
+    <aside id="sidebar">
+        <h2>Survey Number Maps</h2>
+
+        <label for="talukaSelect">Select Taluka</label>
+        <select id="talukaSelect" disabled>
+            <option value="">-- Select Taluka --</option>
+        </select>
+
+        <label for="villageSelect">Select Village</label>
+        <select id="villageSelect" disabled>
+            <option value="">-- Select Village --</option>
+        </select>
+
+        <label for="searchBox">Search Survey Number</label>
+        <input type="text" id="searchBox" placeholder="Enter Survey No" disabled>
+        <button id="searchBtn" class="primary-btn" disabled>Search Survey</button>
+
+        <div class="download-container">
+            <button class="primary-btn" id="toggleDownloadBtn">Download Data ⬇️</button>
+            <div id="downloadMenu" class="download-menu">
+                <button class="download-btn dxf-btn" id="downloadDxfBtn">Download DXF</button>
+                <button class="download-btn kml-btn" id="downloadKmlBtn">Download KML</button>
+            </div>
+        </div>
+
+        <div id="status">System Ready...</div>
+    </aside>
+
+    <!-- Main Map Area -->
+    <main id="map-wrapper">
+        <div id="map"></div>
+        
+        <button id="location-btn" title="Find My Location" aria-label="Find Location">🎯</button>
+        <div id="coords-display">Lat: 0.00000, Lng: 0.00000</div>
+
+        <!-- Layer Controls -->
+        <div id="layer-panel-wrapper">
+            <button id="layer-toggle-btn" title="Toggle Layers Panel" aria-label="Toggle Layers">🥞</button>
+            <div id="right-layer-panel" class="map-panel">
+                <h3>Basemaps</h3>
+                <label class="control-row">
+                    <input type="radio" name="basemap" value="hybrid" checked> 
+                    <span>Google Hybrid</span>
+                </label>
+                <label class="control-row">
+                    <input type="radio" name="basemap" value="satellite"> 
+                    <span>Google Satellite</span>
+                </label>
+                <label class="control-row">
+                    <input type="radio" name="basemap" value="road"> 
+                    <span>Google Road</span>
+                </label>
+                <label class="control-row">
+                    <input type="radio" name="basemap" value="osm"> 
+                    <span>OpenStreetMap</span>
+                </label>
+
+                <h3>GIS Layers</h3>
+                <label class="control-row">
+                    <input type="checkbox" id="toggle-polygon" checked disabled> 
+                    <span>Survey Boundaries</span>
+                </label>
+                <label class="control-row">
+                    <input type="checkbox" id="toggle-line" checked disabled> 
+                    <span>Roads / Waterways</span>
+                </label>
+                <label class="control-row">
+                    <input type="checkbox" id="toggle-point" checked disabled> 
+                    <span>Labels / Texts</span>
+                </label>
+            </div>
+        </div>
+    </main>
+
+    <!-- External Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-measure/dist/leaflet-measure.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
+    
+    <!-- Custom Application Logic -->
+    <script src="js/app.js"></script>
+</body>
+</html>
