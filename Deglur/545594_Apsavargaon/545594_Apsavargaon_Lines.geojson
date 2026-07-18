@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"name": "545594_Apsavargaon_Lines",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "sourcel": "Line_Divided_line", "Taluka": "Deglur", "LGD_Code": "545594", "MAP_ID": "485411054559409000001", "Vill_Name": "Apsavargaon", "File_name": "545594_Apsavargaon" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 77.544624551098991, 18.656634578699325 ], [ 77.545169230175659, 18.657035703778728 ] ] ] } },
+{ "type": "Feature", "properties": { "sourcel": "Line_Divided_line", "Taluka": "Deglur", "LGD_Code": "545594", "MAP_ID": "485411054559409000001", "Vill_Name": "Apsavargaon", "File_name": "545594_Apsavargaon" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 77.540849289807454, 18.657125318203807 ], [ 77.540950990551622, 18.657935230123719 ] ] ] } },
+{ "type": "Feature", "properties": { "sourcel": "Line_Divided_line", "Taluka": "Deglur", "LGD_Code": "545594", "MAP_ID": "485411054559409000001", "Vill_Name": "Apsavargaon", "File_name": "545594_Apsavargaon" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 77.553051717588147, 18.646506349825234 ], [ 77.55371166969573, 18.646624951709903 ] ] ] } },
+{ "type": "Feature", "properties": { "sourcel": "Line_Divided_line", "Taluka": "Deglur", "LGD_Code": "545594", "MAP_ID": "485411054559409000001", "Vill_Name": "Apsavargaon", "File_name": "545594_Apsavargaon" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 77.547677988417277, 18.64305449685174 ], [ 77.547432790946687, 18.642208763288775 ] ] ] } },
+{ "type": "Feature", "properties": { "sourcel": "Line_Divided_line", "Taluka": "Deglur", "LGD_Code": "545594", "MAP_ID": "485411054559409000001", "Vill_Name": "Apsavargaon", "File_name": "545594_Apsavargaon" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 77.539419030163543, 18.657208377345263 ], [ 77.539001606485996, 18.657467808021003 ] ] ] } }
+]
+}
