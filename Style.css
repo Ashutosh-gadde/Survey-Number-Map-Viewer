@@ -1,0 +1,188 @@
+/* ==========================================================================
+   1. Base & Reset
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-color: #f8fafc;
+}
+
+/* ==========================================================================
+   2. Overlays (Login & Loading)
+   ========================================================================== */
+#loginOverlay,
+#loadingOverlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#loginOverlay {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+#loadingOverlay {
+    background: rgba(15, 23, 42, 0.85);
+    color: #38bdf8;
+    flex-direction: column;
+    display: none;
+}
+
+.loginCard {
+    width: 340px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.loginCard h2 { margin-bottom: 20px; text-align: center; }
+.loginCard input {
+    width: 100%; padding: 10px; margin-top: 10px;
+    border-radius: 6px; border: 1px solid #ccc;
+}
+.loginCard button {
+    width: 100%; padding: 10px; margin-top: 15px;
+    background: #0284c7; color: white; border: none;
+    border-radius: 6px; cursor: pointer; font-weight: bold;
+}
+#loginError { color: red; margin-top: 10px; font-size: 13px; text-align: center; }
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    width: 40px; height: 40px; border-radius: 50%;
+    border-left-color: #38bdf8;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   3. Sidebar UI
+   ========================================================================== */
+#sidebar {
+    width: 340px; min-width: 340px; background: #0f172a;
+    color: white; padding: 15px; display: flex; flex-direction: column;
+    z-index: 3000; box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+    transition: margin-left 0.3s ease;
+}
+
+#sidebar.collapsed { margin-left: -340px; }
+#sidebar h2 { text-align: center; margin: 50px 0 20px 0; color: #38bdf8; }
+
+label { font-size: 13px; font-weight: 600; margin-top: 10px; display: block; }
+
+select, input, button.primary-btn {
+    width: 100%; padding: 10px; margin-top: 6px;
+    border-radius: 6px; outline: none;
+}
+select, input[type="text"] {
+    border: 1px solid #334155; background: #1e293b; color: white;
+}
+.primary-btn {
+    border: none; background: #0284c7; color: white;
+    cursor: pointer; font-weight: 600;
+}
+.primary-btn:hover:not(:disabled) { background: #0369a1; }
+.primary-btn:disabled { background: #475569; cursor: not-allowed; }
+
+#status {
+    margin-top: 15px; background: #1e293b; padding: 10px;
+    border-radius: 6px; font-size: 13px; text-align: center;
+}
+
+.download-container { margin-top: 15px; }
+.download-menu {
+    display: none; background: #1e293b; padding: 10px;
+    border-radius: 6px; margin-top: 5px; border: 1px solid #334155;
+}
+.download-btn {
+    width: 100%; padding: 8px; margin-top: 5px; border: none;
+    border-radius: 4px; cursor: pointer; font-weight: 600; color: white;
+}
+.dxf-btn { background: #0284c7; }
+.kml-btn { background: #10b981; }
+
+/* ==========================================================================
+   4. Map Elements & Controls
+   ========================================================================== */
+#map-wrapper { flex: 1; position: relative; }
+#map { width: 100%; height: 100%; }
+
+.leaflet-top.leaflet-left { margin-top: 60px; margin-left: 10px; }
+.leaflet-container:focus { outline: none; }
+
+#sidebarToggle {
+    position: absolute; top: 15px; left: 15px; z-index: 4000;
+    width: 44px; height: 44px; border: none; border-radius: 6px;
+    background: rgba(15, 23, 42, 0.95); color: #38bdf8;
+    font-size: 24px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+#sidebarToggle:hover { background: #0284c7; color: white; }
+
+#location-btn {
+    position: absolute; top: 15px; right: 75px; z-index: 1000;
+    width: 44px; height: 44px; background: rgba(15, 23, 42, 0.9);
+    border: 2px solid #334155; border-radius: 50%; color: #38bdf8;
+    font-size: 20px; cursor: pointer;
+}
+#location-btn:hover { background: #0284c7; color: white; }
+
+#layer-panel-wrapper {
+    position: absolute; top: 15px; right: 15px; z-index: 1000;
+    display: flex; flex-direction: column; align-items: flex-end;
+}
+#layer-toggle-btn {
+    width: 44px; height: 44px; background: rgba(15, 23, 42, 0.9);
+    border: 2px solid #334155; border-radius: 6px; color: white; cursor: pointer;
+}
+.map-panel {
+    background: rgba(15, 23, 42, 0.95); border: 1px solid #334155;
+    border-radius: 8px; padding: 15px; width: 250px; margin-top: 10px;
+    display: none; color: white;
+}
+.map-panel.active { display: block; }
+.map-panel h3 { color: #38bdf8; font-size: 13px; margin: 12px 0 8px; border-bottom: 1px solid #334155; padding-bottom: 4px; }
+.map-panel h3:first-child { margin-top: 0; }
+
+.control-row { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; padding: 4px 0; }
+
+#coords-display {
+    position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.8); color: #38bdf8; padding: 4px 12px;
+    border-radius: 20px; font-size: 12px; z-index: 1000;
+}
+
+.cadastral-label {
+    background: transparent !important; border: none !important; box-shadow: none !important;
+    color: yellow !important; font-weight: bold !important; font-size: 12px !important;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/* ==========================================================================
+   5. Mobile Responsiveness
+   ========================================================================== */
+@media(max-width: 768px) {
+    #sidebar { position: absolute; height: 100%; left: 0; top: 0; }
+    #sidebar.collapsed { margin-left: -340px; }
+    #map-wrapper { width: 100%; }
+    #location-btn { right: 70px; }
+    .leaflet-bottom.leaflet-right { bottom: 70px !important; }
+    .leaflet-control-zoom { margin-top: 60px !important; }
+    #coords-display { font-size: 10px; padding: 3px 8px; }
+}
